@@ -9,6 +9,7 @@ dependencies {
 //        api "org.springframework.boot:pring-boot-starter:${springBootVersion}"
 //        api "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         api "org.projectlombok:lombok:${lombokVersion}"
+        api "commons-io:commons-io:2.11.0"
     }
 }
 
