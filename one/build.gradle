@@ -1,0 +1,12 @@
+ext {
+    //定义此项目特有的版本
+}
+
+dependencies {
+    //在constraints块中定义依赖版本约束
+    constraints {
+//        api "org.springframework.boot:pring-boot-starter:${springBootVersion}"
+//        api "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+

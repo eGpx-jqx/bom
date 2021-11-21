@@ -1,0 +1,87 @@
+import sun.java2d.marlin.Version
+
+ext {
+    springBootVersion = '2.6.0'
+    springCloudVersion = '2020.0.4'
+    nexusUri = 'http://192.168.0.103:8081'
+}
+
+subprojects {
+    apply plugin: 'java-platform'
+    apply plugin: 'maven-publish'
+
+    group 'com.xu'
+    version '1.0-SNAPSHOT'
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        //在constraints块中定义依赖版本约束
+        constraints {
+            api "org.springframework.boot:pring-boot-starter:${springBootVersion}"
+            api "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    dependencies {
+        //在constraints块中定义依赖版本约束
+        constraints {
+            api "org.springframework.boot:pring-boot-starter:${springBootVersion}"
+            api "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+// 默认为防止用户错误地引入依赖，而不是引入依赖约束，如果引入依赖会报错失败。
+// 通过这个配置可以让Gradle允许引入依赖，当然这是可选的
+    javaPlatform {
+        allowDependencies()
+    }
+
+    publishing {
+        publications {
+            //以下maven并非关键字，可自定义
+            go(MavenPublication) {
+                //通过java-platform生成BOM
+                from components.javaPlatform
+
+                pom {
+                    properties = [
+                            springBootVersion : "${springBootVersion}",
+                            springCloudVersion: "${springCloudVersion}"
+                    ]
+                }
+
+            }
+        }
+
+        repositories {
+            maven {
+
+                allowInsecureProtocol = true
+
+                // change to point to your repo, e.g. http://my.org/repo
+                def releasesRepoUrl = "$nexusUri/repository/maven-releases/"
+                def snapshotsRepoUrl = "$nexusUri/repository/maven-snapshots/"
+                url = "$version".endsWith("SNAPSHOT") ? URI.create(snapshotsRepoUrl) : URI.create(releasesRepoUrl)
+
+                credentials {
+                    username = 'admin' // 仓库发布用户名
+                    password = 'admin' // 仓库发布用户密码
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
