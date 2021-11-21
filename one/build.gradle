@@ -1,5 +1,6 @@
 ext {
     //定义此项目特有的版本
+    lombokVersion = '1.18.22'
 }
 
 dependencies {
@@ -7,6 +8,7 @@ dependencies {
     constraints {
 //        api "org.springframework.boot:pring-boot-starter:${springBootVersion}"
 //        api "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        api "org.projectlombok:lombok:${lombokVersion}"
     }
 }
 

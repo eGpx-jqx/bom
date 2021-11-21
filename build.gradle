@@ -1,5 +1,3 @@
-import sun.java2d.marlin.Version
-
 ext {
     springBootVersion = '2.6.0'
     springCloudVersion = '2020.0.4'
@@ -10,6 +8,7 @@ subprojects {
     apply plugin: 'java-platform'
     apply plugin: 'maven-publish'
 
+    //可以项目单独定制
     group 'com.xu'
     version '1.0-SNAPSHOT'
 
